@@ -2,6 +2,9 @@
 
 window.addEventListener('DOMContentLoaded', init);
 
+/*
+Initializes the aspects of the synthesizer 
+*/
 function init() {
   // TODO
 
@@ -11,6 +14,10 @@ function init() {
   const faceImage = document.querySelector("img");;
   let listOfVoices = [];
 
+  /*
+  fills the voice list from .getVoices
+  properly formats it on the explore.html
+  */
   function fillVoiceList(){
     listOfVoices = speechSynthesis.getVoices();
     voiceSelect.innerHTML ='';
@@ -37,12 +44,16 @@ function init() {
 
   fillVoiceList();
 
+  /*
+    When the button is clicked, it creates the textToSpeech
+    from the text area
+  */
   speakButton.addEventListener('click', () => {
     const voiceName = voiceSelect.selectedOptions[0].getAttribute('data-name');
     const selectedVoice = listOfVoices.find(voice => voice.name === voiceName);
     
 
-    console.log(textArea.value);
+    // console.log(textArea.value);
     let textToSpeech = new SpeechSynthesisUtterance(textArea.value);
     textToSpeech.voice = selectedVoice;
 
